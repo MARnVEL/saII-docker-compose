@@ -7,10 +7,8 @@ services:
     build:
       context: ./balancer-nginx
       dockerfile: Dockerfile
-
     ports:
       - "8088:80"
-    
     depends_on:
       - server1
       - server2
@@ -18,27 +16,22 @@ services:
   server1:
     # nombre del contendor
     container_name: S1
-    
     # imagen a utilizar
     build:
       context: ./srv-php-apache-node1
       dockerfile: Dockerfile
-    
     ports:
     #El puerto de la derecha es el que expone el contenedor. Y el puerto de la izquierda es por medio del cual quiero conectarme desde mi máquina al contenedor.
       - "8095:81"
     restart: always
-  
+
   server2:
     # nombre del contendor
     container_name: S2
-    
     # imagen a utilizar
     build:
       context: ./srv-php-apache-node2
       dockerfile: Dockerfile
-    
     ports:
-    #El puerto de la derecha es el que expone el contenedor. Y el puerto de la izquierda es por medio del cual quiero conectarme desde mi máquina al contenedor.
       - "8098:82"
     restart: always
